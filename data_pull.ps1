@@ -42,17 +42,17 @@ foreach ($file in $data_array) {
             'Last Access' = $file.LastAccessTime
             'Last Touch'  = $file.LastWriteTime
         })
-
+<#
     foreach ($filename in $data_array) {
         if ($file.CreationTime -eq $file.LastAccessTime) {
             $noTouch += $filename
         }
         
     }
-
+#>
     
 }
-$noTouch | Export-Csv -Path .\CSV\notouch.csv -NoTypeInformation
+#$noTouch | Export-Csv -Path .\CSV\notouch.csv -NoTypeInformation
 $results | Export-Csv -Path .\CSV\datafile.csv -NoTypeInformation
 
 streamlit run main_st.py
