@@ -1,3 +1,10 @@
+$pip_find = pip list | Out-String
+
+if ($pip_find -notmatch 'streamlit' -or 'pandas') {
+    pip install streamlit --user
+    pip install pandas --user
+}
+
 $data_array = @()
 
 $index = Read-Host "Enter UNC Path(s) separated paths by commas"
@@ -48,3 +55,4 @@ foreach ($file in $data_array) {
 $noTouch | Export-Csv -Path .\CSV\notouch.csv -NoTypeInformation
 $results | Export-Csv -Path .\CSV\datafile.csv -NoTypeInformation
 
+streamlit run main_st.py
