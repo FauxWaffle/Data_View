@@ -15,3 +15,10 @@ All file statistics will be placed in the datafile.csv file within the CSV folde
 Line 58 will autolaunch Streamlit which will open a local web-server in your default browser. From here you will be able to view/export your CSV with desired toggles selected. You can click column headers to sort.
 
 !! Not final stage of program. Still in progress !!
+
+
+2/29/2024:
+I have added the "not touched" metric in with Python versus using PowerShell. This allows for a bit quicker data collection.
+Once toggles are selected, if you hover over the header row you can select, EXPORT, which will save a CSV with the data fields selected.
+
+For questions: OrrinDabney@Outlook.com
