@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 df = pd.read_csv('csv/datafile.csv')
 df['File Size'] = (df['File Size'] / 1000).round(2)
@@ -8,15 +9,10 @@ file_size_max = df['File Size'].max()
 file_size_min = df['File Size'].min()
 file_size_med = df['File Size'].median()
 
-'''
-for date in df:
-    df['Last Touch'] = pd.to_datetime(df['Last Touch'], format='%m/%d/%Y')
-    df['Last Touch'] = df['Last Touch'].dt.strftime('%m/%d/%Y')
-    df['Created On'] = pd.to_datetime(df['Last Touch'], format='%m/%d/%Y')
-    df['Created On'] = df['Last Touch'].dt.strftime('%m/%d/%Y')
-    df['Last Access'] = pd.to_datetime(df['Last Touch'], format='%m/%d/%Y')
-    df['Last Access'] = df['Last Touch'].dt.strftime('%m/%d/%Y')
-'''
+df['Never Accessed'] = np.where(df['Created On'] == df['Last Access'], 'yes', 'no')
+yes_rows = df[df['Never Accessed'] == 'yes']
+yes_rows = yes_rows.shape[0]
+
 
 def df_all():
     metrics = {
@@ -30,10 +26,12 @@ def df_all():
         'File Sum': file_size_sum,
         'File Max': file_size_max,
         'File Min': file_size_min,
-        'File Med': file_size_med
+        'File Med': file_size_med,
+        'Not Touched': df['Never Accessed'],
+        'Total Count': yes_rows
     }
     return metrics
 
 
-if __name__ == "__main_st__":
+if __name__ == "__main__":
     print(df_all())
