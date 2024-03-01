@@ -9,8 +9,8 @@ file_size_max = df['File Size'].max()
 file_size_min = df['File Size'].min()
 file_size_med = df['File Size'].median()
 
-df['Never Accessed'] = np.where(df['Created On'] == df['Last Access'], 'yes', 'no')
-yes_rows = df[df['Never Accessed'] == 'yes']
+df['Never Accessed'] = np.where(df['Created On'] == df['Last Access'], 'Yes', 'No')
+yes_rows = df[df['Never Accessed'] == 'Yes']
 yes_rows = yes_rows.shape[0]
 
 
