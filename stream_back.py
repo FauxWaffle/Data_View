@@ -1,7 +1,21 @@
 import pandas as pd
 import numpy as np
+import streamlit as st
+
 
 df = pd.read_csv('csv/datafile.csv')
+
+
+#--Search for SID as Owner--#
+
+pattern = r'S-1'
+
+filtered_df = df[df['File Owner'].str.contains(pattern) | df['File Name'].str.contains(pattern)]
+result_dict = dict(zip(filtered_df['File Owner'], filtered_df['File Name']))
+#result_totals = result_dict['File Name'].count()
+
+#--Getting Metrics--#
+
 df['File Size'] = (df['File Size'] / 1000).round(2)
 size_sort = df.sort_values(by=['File Size'], ascending=False)
 file_size_sum = df['File Size'].sum()
@@ -32,6 +46,9 @@ def df_all():
         'Created On': df['Created On'],
         'Last Access': df['Last Access'],
         'File Owner': df['File Owner'],
+        'SID as Owner': filtered_df['File Owner'],
+        'SID File': filtered_df['File Name'],
+        'Export Results': result_dict,
         'Size Sorted': size_sort,
         'File Sum': file_size_sum,
         'File Max': file_size_max,
@@ -45,6 +62,16 @@ def df_all():
         'Max File Name': max_file_size_name
     }
     return metrics
+
+
+
+@st.cache_data
+def convert_df(result_dict):
+    return filtered_df.to_csv().encode('utf-8')
+
+
+
+
 
 
 if __name__ == "__main_st__":
