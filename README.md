@@ -13,4 +13,4 @@ All file statistics will be placed in the datafile.csv file within the CSV folde
 
 
 
-For questions: OrrinDabney@Outlook.com
+For questions or issues with running: OrrinDabney@Outlook.com
