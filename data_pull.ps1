@@ -1,9 +1,10 @@
-$pip_find = pip list | Out-String
+<#$pip_find = pip list | Out-String
 
 if ($pip_find -notmatch 'streamlit' -or 'pandas') {
     pip install streamlit --user
     pip install pandas --user
 }
+#>
 
 $data_array = @()
 
@@ -28,9 +29,8 @@ foreach ($path in $paths) {
     }
 }
 
-$noTouch = @()
 $results = @()
-
+# still having trouble getting the owner to display per file
 foreach ($file in $data_array) {
     $file_owner = $file | Get-Acl | select -ExpandProperty Owner
 
@@ -49,10 +49,10 @@ foreach ($file in $data_array) {
         }
         
     }
-#>
+#>    
     
 }
-#$noTouch | Export-Csv -Path .\CSV\notouch.csv -NoTypeInformation
+mkdir .\CSV
 $results | Export-Csv -Path .\CSV\datafile.csv -NoTypeInformation
 
-streamlit run main_st.py
+streamlit run .\main_st.py
