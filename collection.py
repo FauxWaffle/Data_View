@@ -34,3 +34,5 @@ with open('.\CSV\datafile.csv', 'w', newline='') as csvfile:
                             'Created On': time.ctime(file_stats.st_ctime),
                             'Last Touch': time.ctime(file_stats.st_mtime),
                             'Last Access': time.ctime(file_stats.st_atime)})
+            
+os.system('streamlit run .\\main.py')
