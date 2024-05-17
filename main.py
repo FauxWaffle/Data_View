@@ -29,6 +29,7 @@ with col_data_2:
     st.write("Max File Size in MB:", metrics['File Max'])
     st.write("Min File Size in MB:", metrics['File Min'])
     st.write("Median File Size in MB:", metrics['File Med'])
+    st.write('Number of Files at Zero KB:', metrics['Zero KB'])
 with col_data_3:
     st.write("Largest File Name:", metrics['Max File Name'])
     st.write("Total GB of Never Accessed:", never_accessed_size)
@@ -68,7 +69,7 @@ with tab_second:
     )
 
 
-display_df = pd.DataFrame({'File Name': metrics['File Name']})
+display_df = pd.DataFrame({'Path': metrics['Folder Path'],'File Name': metrics['File Name']})
 
 
 if metric_1:
@@ -106,6 +107,8 @@ with tab_second:
     sid_df = pd.DataFrame(deleted_owner)
 
     st.table(sid_df)
+
+
 
 
 
