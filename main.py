@@ -13,10 +13,10 @@ col_data_1, col_data_2, col_data_3 = st.columns(3)
 
 #--Computing Data Metrics--#
 
-metrics_sum = (metrics['File Sum'] / 1000).round(2)
+metrics_sum = (metrics['File Sum'] / 1024).round(2)
 metrics_count = metrics['Total Count']
 
-never_accessed_size = (metrics['Never Touched Size'] / 1000).round(2)
+never_accessed_size = (metrics['Never Touched Size'] / 1024).round(2)
 
 
 #--Displaying Data Summary--#
