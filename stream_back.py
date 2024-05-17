@@ -24,7 +24,7 @@ result_dict = dict(zip(filtered_df['File Owner'], filtered_df['File Name']))
 
 #Might need to look at the Wine python app I made and ignore all zero kb lines so the math works.
 
-df['File Size'] = (df['File Size'] / 1000).round(2)
+df['File Size'] = (df['File Size'] / 1_048_576).round(2)
 size_sort = df.sort_values(by=['File Size'], ascending=False)
 file_size_sum = df['File Size'].sum()
 file_size_max = df['File Size'].max()
