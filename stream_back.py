@@ -4,7 +4,13 @@ import streamlit as st
 
 
 df = pd.read_csv('csv/datafile.csv')
+#print(df['File Size'].median())
 
+
+zero_kb = 0
+for smallest_files in df['File Size']:
+    if smallest_files == 0:
+        zero_kb += 1
 
 #--Search for SID as Owner--#
 
@@ -16,12 +22,15 @@ result_dict = dict(zip(filtered_df['File Owner'], filtered_df['File Name']))
 
 #--Getting Metrics--#
 
+#Might need to look at the Wine python app I made and ignore all zero kb lines so the math works.
+
 df['File Size'] = (df['File Size'] / 1000).round(2)
 size_sort = df.sort_values(by=['File Size'], ascending=False)
 file_size_sum = df['File Size'].sum()
 file_size_max = df['File Size'].max()
 file_size_min = df['File Size'].min()
 file_size_med = df['File Size'].median()
+
 
 max_file_size_name = df.loc[df['File Size'] == df['File Size'].max()]["File Name"].squeeze()
 
@@ -59,7 +68,9 @@ def df_all():
         'Never Touched Size': yes_total_size,
         'Average Untouched': yes_average,
         'DF Count': df_count,
-        'Max File Name': max_file_size_name
+        'Max File Name': max_file_size_name,
+        'Zero KB': zero_kb,
+        'Folder Path': df['Path']
     }
     return metrics
 
@@ -74,5 +85,5 @@ def convert_df(result_dict):
 
 
 
-if __name__ == "__main_st__":
+if __name__ == "__main__":
     print(df_all())
