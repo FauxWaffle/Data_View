@@ -24,6 +24,6 @@ All file statistics will be placed in the datafile.csv file within the CSV folde
 
 5/17/24:
 - Rewrote the PS1 script in Python. Now data collection happens much quicker.
-- **I think something is still wrong with the GB math.** It is just slightly off.
+
 
 For questions or issues with running: OrrinDabney@Outlook.com
