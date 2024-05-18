@@ -42,6 +42,18 @@ never_accessed_df = df[df['Never Accessed'] == 'Yes']
 yes_total_size = never_accessed_df['File Size'].sum()
 yes_average = never_accessed_df['File Size'].median()
 
+
+#--Collection of joined file path and never accessed files--
+def not_touched():
+    no_touchy = []
+    for index, row in df.iterrows():
+        if row['Created On'] == row['Last Access']:
+            no_touchy.append(row['Path'] + row['File Name'])
+    return no_touchy
+
+
+        
+
 #--Total Number of Rows--
 df_count = df['File Name'].count()
 
