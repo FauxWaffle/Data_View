@@ -3,8 +3,11 @@ import stream_back
 import pandas as pd
 from stream_back import *
 
+
+#--Formatting--
 st.set_page_config(layout="wide")
 metrics = stream_back.df_all()
+no_touchy = stream_back.not_touched()
 
 st.header("Data Summary:")
 
@@ -41,7 +44,7 @@ st.markdown("---")
 
 #--Toggles for Data Controls--#
 st.header('Data Controls:')
-tab_main, tab_second = st.tabs(["All Data", "No File Owner"])
+tab_main, tab_second, tab_third = st.tabs(["All Data", "No File Owner", "Never Accessed"])
 
 
 col1, col2 = st.columns(2)
@@ -57,18 +60,10 @@ with tab_main:
         metric_5 = st.toggle("File Owner")
         metric_6 = st.toggle("Never Accessed - Click Header to Filter YES")
 
-sid_count = metrics['SID as Owner'].count()
-with tab_second:
-    st.write("Total Number of Unowned Files:", sid_count)
-    export_data = convert_df(metrics['Export Results'])
-    st.download_button(
-        label="Download SID list to CSV",
-        data=export_data,
-        file_name="Files_no_owner.csv",
-        mime='text/csv'
-    )
 
 
+
+#--Main Tab--
 display_df = pd.DataFrame({'Path': metrics['Folder Path'],'File Name': metrics['File Name']})
 
 
@@ -94,7 +89,19 @@ if metric_6:
 st.dataframe(display_df, use_container_width=False)
 
 
+
 #--SID as Owner--#
+
+sid_count = metrics['SID as Owner'].count()
+with tab_second:
+    st.write("Total Number of Unowned Files:", sid_count)
+    export_data = convert_df(metrics['Export Results'])
+    st.download_button(
+        label="Download SID list to CSV",
+        data=export_data,
+        file_name="Files_no_owner.csv",
+        mime='text/csv'
+    )
 
 
 st.markdown("---")
@@ -109,7 +116,12 @@ with tab_second:
     st.table(sid_df)
 
 
+#--Never Accessed Tab--
 
+with tab_third:
+    st.write("Total Number of Untouched Files:", len(no_touchy))
+    
+    no_touchy
 
 
 #--Dataframe build for Table--#
