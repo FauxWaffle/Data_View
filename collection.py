@@ -3,6 +3,8 @@ import win32security
 import time
 import csv
 
+BUFFER_SIZE = 4096  # Increase buffer size
+
 def get_owner(file):
     sid = win32security.GetFileSecurity(file, win32security.OWNER_SECURITY_INFORMATION)
     owner_sid = sid.GetSecurityDescriptorOwner()
