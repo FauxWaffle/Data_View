@@ -15,7 +15,7 @@ dir_path = input("Enter your filepath: ").strip()
 
 #owner = get_owner(dir_path)
 
-with open('.\CSV\datafile.csv', 'w', newline='') as csvfile:
+with open('./CSV/datafile.csv', 'w', newline='') as csvfile:
     fieldnames = ['Path', 'File Name', 'File Owner', 'File Size', 'Created On', 'Last Touch', 'Last Access']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
