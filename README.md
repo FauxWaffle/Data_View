@@ -25,5 +25,7 @@ All file statistics will be placed in the datafile.csv file within the CSV folde
 5/17/24:
 - Rewrote the PS1 script in Python. Now data collection happens much quicker.
 
+5/01/25
+- Working on adding Linux data ingestion and PDF executive summary.
 
 For questions or issues with running: OrrinDabney@Outlook.com
